@@ -1,5 +1,5 @@
 from playwright.sync_api import sync_playwright
-
+import time
 # 使用 Playwright 上下文管理器
 with sync_playwright() as p:
     # 启动 Firefox 浏览器
@@ -13,6 +13,9 @@ with sync_playwright() as p:
 # 使用 ID 定位输入框
     page.fill("#search_input", "企业信用查询长城")  # 直接填充文本
     # page.press("#search_input", "Enter")  # 模拟按 Enter 键
+
+    time.sleep(3)
+    
     page.click(".search_btn")  # 点击搜索按钮
     
         # 等待页面加载完成
@@ -25,6 +28,9 @@ with sync_playwright() as p:
 
     # 可选：截图保存
     page.screenshot(path="creditchina_homepage.png")
-
+    
+    time.sleep(5)
+    
+    print("---完成任务---")
     # 关闭浏览器
     browser.close() 
