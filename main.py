@@ -7,11 +7,18 @@ with sync_playwright() as p:
     page = browser.new_page()
 
     # 访问信用中国首页
-    page.goto("https://www.creditchina.gov.cn/", wait_until="networkidle")
+    page.goto("https://www.creditchina.gov.cn/")
 
-    # 等待页面加载完成
+
+# 使用 ID 定位输入框
+    page.fill("#search_input", "企业信用查询长城")  # 直接填充文本
+    # page.press("#search_input", "Enter")  # 模拟按 Enter 键
+    page.click(".search_btn")  # 点击搜索按钮
+    
+        # 等待页面加载完成
     page.wait_for_load_state("networkidle")
 
+    
     # 获取页面标题
     title = page.title()
     print(f"页面标题: {title}")
@@ -20,4 +27,4 @@ with sync_playwright() as p:
     page.screenshot(path="creditchina_homepage.png")
 
     # 关闭浏览器
-    browser.close()
+    browser.close() 
